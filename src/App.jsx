@@ -1,9 +1,19 @@
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+
 function App() {
   return (
-    <div className="container text-center mt-5">
-      <h1 className="text-primary">Dictionary App</h1>
-      <button className="btn btn-primary mt-3">Test Bootstrap</button>
-    </div>
+    <>
+      <Header />
+
+      <main>
+        <div className="container">
+          
+          <br />
+          <SearchBar />
+        </div>
+      </main>
+    </>
   );
 }
 
