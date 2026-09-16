@@ -1,6 +1,6 @@
 function SearchBar() {
   return (
-    <form className="search-form">
+    <form className="search-bar">
       <div className="input-group">
         <span className="input-group-text">
           <i className="bi bi-search"></i>

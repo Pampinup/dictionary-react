@@ -1,10 +1,99 @@
+:root {
+  /* =========================
+     COLORS
+  ========================= */
+
+  --bg: #080b24;
+  --surface: #101637;
+  --surface-light: #151d46;
+
+  --text: #f4f5ff;
+  --text-muted: #8f9ac7;
+
+  --primary: #737cff;
+  --primary-light: #9a9fff;
+
+  --border: rgba(115, 124, 255, 0.25);
+  --border-light: rgba(115, 124, 255, 0.45);
+
+  /* =========================
+     TYPOGRAPHY
+  ========================= */
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-mono: "Courier New", monospace;
+
+  /* =========================
+     SPACING
+  ========================= */
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --container-max-width: 680px;
+
+  /* =========================
+     BORDERS & RADIUS
+  ========================= */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* =========================
+     EFFECTS
+  ========================= */
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  --glow: 0 0 25px rgba(115, 124, 255, 0.2);
+
+  /* =========================
+     GLOBAL
+  ========================= */
+
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   RESET
+========================= */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 #root {
