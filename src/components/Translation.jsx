@@ -33,28 +33,51 @@ function Translation({ word }) {
 
     const utterance = new SpeechSynthesisUtterance(translation);
 
-    if (language === "Spanish") {
-      utterance.lang = "es-ES";
-    }
+    const languageSettings = {
+      Spanish: {
+        lang: "es-ES",
+        languageCode: "es",
+      },
+      French: {
+        lang: "fr-FR",
+        languageCode: "fr",
+      },
+      Portuguese: {
+        lang: "pt-PT",
+        languageCode: "pt",
+      },
+      Irish: {
+        lang: "ga-IE",
+        languageCode: "ga",
+      },
+      German: {
+        lang: "de-DE",
+        languageCode: "de",
+      },
+      Italian: {
+        lang: "it-IT",
+        languageCode: "it",
+      },
+    };
 
-    if (language === "French") {
-      utterance.lang = "fr-FR";
-    }
+    const settings = languageSettings[language];
 
-    if (language === "Portuguese") {
-      utterance.lang = "pt-PT";
-    }
+    if (settings) {
+      utterance.lang = settings.lang;
 
-    if (language === "Irish") {
-      utterance.lang = "ga-IE";
-    }
+      const voices = window.speechSynthesis.getVoices();
 
-    if (language === "German") {
-      utterance.lang = "de-DE";
-    }
+      const matchingVoice =
+        voices.find(
+          (voice) => voice.lang.toLowerCase() === settings.lang.toLowerCase(),
+        ) ||
+        voices.find((voice) =>
+          voice.lang.toLowerCase().startsWith(settings.languageCode),
+        );
 
-    if (language === "Italian") {
-      utterance.lang = "it-IT";
+      if (matchingVoice) {
+        utterance.voice = matchingVoice;
+      }
     }
 
     window.speechSynthesis.speak(utterance);
