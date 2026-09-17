@@ -6,13 +6,16 @@ import SuggestedWords from "./components/SuggestedWords";
 import WordHeader from "./components/WordHeader";
 import Definitions from "./components/Definitions";
 import Synonyms from "./components/Synonyms";
+import VisualContext from "./components/VisualContext";
 
 import { searchWord } from "./services/dictionaryApi";
+import { searchImages } from "./services/pexelsApi";
 
 import "./App.css";
 
 function App() {
   const [wordData, setWordData] = useState(null);
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -24,6 +27,8 @@ function App() {
     try {
       const data = await searchWord(word);
       setWordData(data);
+      const imageData = await searchImages(word);
+      setPhotos(imageData.photos);
     } catch {
       setError("We couldn't find that word.");
     } finally {
@@ -71,6 +76,7 @@ function App() {
 
               <Definitions meanings={wordData.meanings} />
               <Synonyms meanings={wordData.meanings} onSearch={handleSearch} />
+              <VisualContext photos={photos} />
             </>
           )}
         </div>

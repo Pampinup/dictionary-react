@@ -501,6 +501,87 @@ h1 {
 }
 
 /* =========================
+   Visual Context
+========================= */
+
+.visual-context {
+  margin-top: var(--spacing-xxl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+}
+
+.visual-context h2 {
+  margin: 0 0 var(--spacing-md);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+}
+
+.visual-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.visual-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-light);
+  box-shadow: var(--glow);
+}
+
+.visual-card > a {
+  display: block;
+  overflow: hidden;
+}
+
+.visual-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.visual-card:hover img {
+  transform: scale(1.04);
+}
+
+.photo-credit {
+  margin: 0;
+  padding: 0.6rem 0.75rem 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.photo-credit a {
+  color: var(--primary-light);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.photo-credit a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 
@@ -534,4 +615,7 @@ h1 {
   .synonyms-list button {
     padding: 0.4rem 0.75rem;
   }
+  .visual-grid {
+  grid-template-columns: 1fr;
+}
 }
