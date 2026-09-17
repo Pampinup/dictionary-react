@@ -17,8 +17,8 @@ function Definitions({ meanings }) {
         <button type="button" className="active">
           Definitions
         </button>
-
-        <button type="button">Grammar</button>
+        {/*
+        <button type="button">Grammar</button>*/}
       </div>
 
       <div className="definition-list">
