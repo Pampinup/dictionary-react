@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import SuggestedWords from "./components/SuggestedWords";
 import WordHeader from "./components/WordHeader";
 import Definitions from "./components/Definitions";
+import Synonyms from "./components/Synonyms";
 
 import { searchWord } from "./services/dictionaryApi";
 
@@ -69,6 +70,7 @@ function App() {
               />
 
               <Definitions meanings={wordData.meanings} />
+              <Synonyms meanings={wordData.meanings} onSearch={handleSearch} />
             </>
           )}
         </div>

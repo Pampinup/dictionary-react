@@ -26,7 +26,7 @@ function Definitions({ meanings }) {
           <div className="definition-group" key={partOfSpeech}>
             <h3 className="definition-group-title">{partOfSpeech}</h3>
 
-            {definitions.map((meaning, index) => (
+            {definitions.slice(0, 5).map((meaning, index) => (
               <article className="definition" key={index}>
                 <div className="definition-number">{index + 1}</div>
 

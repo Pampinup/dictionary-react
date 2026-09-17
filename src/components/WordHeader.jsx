@@ -1,4 +1,32 @@
+import { useState } from "react";
+
 function WordHeader({ word, phonetic, partsOfSpeech }) {
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  function handleSpeak() {
+    if (!("speechSynthesis" in window)) {
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(word);
+
+    utterance.lang = "en-US";
+
+    utterance.onstart = () => {
+      setIsSpeaking(true);
+    };
+
+    utterance.onend = () => {
+      setIsSpeaking(false);
+    };
+
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
   return (
     <section className="word-header">
       <div className="word-title">
@@ -17,9 +45,14 @@ function WordHeader({ word, phonetic, partsOfSpeech }) {
         <span>{phonetic}</span>
       </div>
 
-      <button type="button" className="audio-button">
+      <button
+        type="button"
+        className={`audio-button ${isSpeaking ? "speaking" : ""}`}
+        onClick={handleSpeak}
+        disabled={isSpeaking}
+      >
         <i className="bi bi-volume-up-fill"></i>
-        Listen
+        {isSpeaking ? "Speaking..." : "Listen"}
       </button>
     </section>
   );

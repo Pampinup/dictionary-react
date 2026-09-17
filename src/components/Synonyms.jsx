@@ -1,13 +1,19 @@
-function Synonyms() {
-  const synonyms = ["alba", "amanecer", "alborada", "madrugada", "crepúsculo"];
+function Synonyms({ meanings, onSearch }) {
+  const synonyms = [
+    ...new Set(meanings.flatMap((meaning) => meaning.synonyms || [])),
+  ].slice(0, 10);
+
+  if (synonyms.length === 0) {
+    return null;
+  }
 
   return (
     <section className="synonyms">
-      <h2>Sinónimos</h2>
+      <h2>Synonyms</h2>
 
       <div className="synonyms-list">
         {synonyms.map((synonym) => (
-          <button key={synonym} type="button">
+          <button type="button" key={synonym} onClick={() => onSearch(synonym)}>
             {synonym}
           </button>
         ))}
