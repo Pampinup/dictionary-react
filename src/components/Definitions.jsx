@@ -1,43 +1,45 @@
-function Definitions() {
-  const definitions = [
-    {
-      definition:
-        "Fenómeno luminoso que aparece en el cielo de las regiones polares, producido por la interacción de partículas cargadas del viento solar con la atmósfera.",
-      example:
-        "La aurora boreal iluminó el cielo con ondas de color esmeralda.",
-    },
-    {
-      definition:
-        "Luz difusa que precede a la salida del sol; el comienzo del día.",
-      example: "Nos despertamos con la aurora y emprendimos el camino.",
-    },
-    {
-      definition: "Principio o comienzo de algo; el alba de un período.",
-      example: "Vive en la aurora de una nueva era tecnológica.",
-    },
-  ];
+function Definitions({ meanings }) {
+  const groupedMeanings = meanings.reduce((groups, meaning) => {
+    const partOfSpeech = meaning.partOfSpeech;
+
+    if (!groups[partOfSpeech]) {
+      groups[partOfSpeech] = [];
+    }
+
+    groups[partOfSpeech].push(meaning);
+
+    return groups;
+  }, {});
 
   return (
     <section className="definitions">
       <div className="definitions-tabs">
         <button type="button" className="active">
-          Definiciones
+          Definitions
         </button>
 
-        <button type="button">Gramática</button>
+        <button type="button">Grammar</button>
       </div>
 
       <div className="definition-list">
-        {definitions.map((item, index) => (
-          <article className="definition" key={index}>
-            <div className="definition-number">{index + 1}</div>
+        {Object.entries(groupedMeanings).map(([partOfSpeech, definitions]) => (
+          <div className="definition-group" key={partOfSpeech}>
+            <h3 className="definition-group-title">{partOfSpeech}</h3>
 
-            <div className="definition-content">
-              <p className="definition-text">{item.definition}</p>
+            {definitions.map((meaning, index) => (
+              <article className="definition" key={index}>
+                <div className="definition-number">{index + 1}</div>
 
-              <p className="definition-example">“{item.example}”</p>
-            </div>
-          </article>
+                <div className="definition-content">
+                  <p className="definition-text">{meaning.definition}</p>
+
+                  {meaning.example && (
+                    <p className="definition-example">“{meaning.example}”</p>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         ))}
       </div>
     </section>

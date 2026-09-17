@@ -1,29 +1,76 @@
+import { useState } from "react";
+
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import SuggestedWords from "./components/SuggestedWords";
 import WordHeader from "./components/WordHeader";
 import Definitions from "./components/Definitions";
-import Synonyms from "./components/Synonyms";
+
+import { searchWord } from "./services/dictionaryApi";
 
 import "./App.css";
 
 function App() {
+  const [wordData, setWordData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSearch(word) {
+    setLoading(true);
+    setError("");
+    setWordData(null);
+
+    try {
+      const data = await searchWord(word);
+      setWordData(data);
+    } catch {
+      setError("We couldn't find that word.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <Header />
 
       <main>
         <div className="container">
-          <SearchBar />
-          <SuggestedWords />
-          <WordHeader
-            word="Aurora"
-            phonetic="/aʊˈrɔːrə/"
-            partOfSpeech="sustantivo femenino"
-            origin="Latín"
-          />
-          <Definitions />
-          <Synonyms />
+          <SearchBar onSearch={handleSearch} />
+
+          <SuggestedWords onSearch={handleSearch} />
+
+          {loading && (
+            <div className="search-loading" role="status">
+              <span className="loading-spinner"></span>
+              <p>Searching...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="search-error" role="alert">
+              <i className="bi bi-search"></i>
+              <h2>Word not found</h2>
+              <p>{error}</p>
+              <span>Try searching for another English word.</span>
+            </div>
+          )}
+
+          {wordData && (
+            <>
+              <WordHeader
+                word={wordData.word}
+                phonetic={wordData.phonetic}
+                partsOfSpeech={[
+                  ...new Set(
+                    wordData.meanings.map((meaning) => meaning.partOfSpeech),
+                  ),
+                ]}
+              />
+
+              <Definitions meanings={wordData.meanings} />
+            </>
+          )}
         </div>
       </main>
     </>

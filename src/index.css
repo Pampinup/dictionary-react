@@ -16,6 +16,10 @@
   --border: rgba(115, 124, 255, 0.25);
   --border-light: rgba(115, 124, 255, 0.45);
 
+  --error: #a78bfa;
+  --error-border: rgba(215, 139, 250, 0.28);
+  --error-surface: rgba(167, 139, 250, 0.06);
+
   /* =========================
      TYPOGRAPHY
   ========================= */

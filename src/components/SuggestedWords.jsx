@@ -1,10 +1,15 @@
-function SuggestedWords() {
-  const words = ["Aurora", "Bioluminiscencia", "Umbral", "Quimera", "Éter"];
+function SuggestedWords({ onSearch }) {
+  const words = ["Aurora", "Bioluminescence", "Threshold", "Chimera", "Aether"];
 
   return (
     <div className="suggested-words">
       {words.map((word) => (
-        <button key={word} type="button" className="suggested-word">
+        <button
+          key={word}
+          type="button"
+          className="suggested-word"
+          onClick={() => onSearch(word)}
+        >
           {word}
         </button>
       ))}

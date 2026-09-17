@@ -6,8 +6,14 @@ export async function searchWord(word) {
   );
 
   if (!response.ok) {
-    throw new Error("No se ha podido encontrar la palabra.");
+    throw new Error("Word not found");
   }
 
-  return response.json();
+  const data = await response.json();
+
+  if (!data.meanings || data.meanings.length === 0) {
+    throw new Error("Word not found");
+  }
+
+  return data;
 }

@@ -2,7 +2,7 @@ function Header() {
   return (
     <header>
       <div className="container">
-        <p className="app-header">DICCIONARIO · ES</p>
+        <p className="app-header">DICTIONARY · EN</p>
       </div>
     </header>
   );

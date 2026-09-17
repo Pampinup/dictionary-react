@@ -1,9 +1,16 @@
-function WordHeader({ word, phonetic, partOfSpeech, origin }) {
+function WordHeader({ word, phonetic, partsOfSpeech }) {
   return (
     <section className="word-header">
       <div className="word-title">
         <h1>{word}</h1>
-        <span className="part-of-speech">{partOfSpeech}</span>
+
+        <div className="part-of-speech-list">
+          {partsOfSpeech.map((partOfSpeech) => (
+            <span className="part-of-speech" key={partOfSpeech}>
+              {partOfSpeech}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="pronunciation">
@@ -12,13 +19,8 @@ function WordHeader({ word, phonetic, partOfSpeech, origin }) {
 
       <button type="button" className="audio-button">
         <i className="bi bi-volume-up-fill"></i>
-        Escuchar
+        Listen
       </button>
-
-      <div className="origin">
-        <span>ORIGEN</span>
-        <p>{origin}</p>
-      </div>
     </section>
   );
 }
