@@ -7,9 +7,12 @@ import WordHeader from "./components/WordHeader";
 import Definitions from "./components/Definitions";
 import Synonyms from "./components/Synonyms";
 import VisualContext from "./components/VisualContext";
+import Grammar from "./components/Grammar";
+import Translation from "./components/Translation";
 
 import { searchWord } from "./services/dictionaryApi";
 import { searchImages } from "./services/pexelsApi";
+import { getGrammar } from "./services/aiApi";
 
 import "./App.css";
 
@@ -18,15 +21,23 @@ function App() {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [activeTab, setActiveTab] = useState("definitions");
+  const [grammar, setGrammar] = useState(null);
+  const [grammarLoading, setGrammarLoading] = useState(false);
+  const [grammarError, setGrammarError] = useState("");
 
   async function handleSearch(word) {
     setLoading(true);
     setError("");
     setWordData(null);
+    setActiveTab("definitions");
+    setGrammar(null);
+    setGrammarError("");
 
     try {
       const data = await searchWord(word);
       setWordData(data);
+
       const imageData = await searchImages(word);
       setPhotos(imageData.photos);
     } catch {
@@ -34,6 +45,39 @@ function App() {
     } finally {
       setLoading(false);
     }
+  }
+
+  async function handleGrammarClick() {
+    setActiveTab("grammar");
+
+    if (grammar) {
+      return;
+    }
+
+    if (!wordData) {
+      return;
+    }
+
+    setGrammarLoading(true);
+    setGrammarError("");
+
+    try {
+      const data = await getGrammar(wordData.word, wordData.meanings);
+      setGrammar(data);
+    } catch {
+      setGrammarError("Grammar information is currently unavailable.");
+    } finally {
+      setGrammarLoading(false);
+    }
+  }
+
+  function handleTabChange(tab) {
+    if (tab === "grammar") {
+      handleGrammarClick();
+      return;
+    }
+
+    setActiveTab("definitions");
   }
 
   return (
@@ -74,8 +118,24 @@ function App() {
                 ]}
               />
 
-              <Definitions meanings={wordData.meanings} />
+              <Translation key={wordData.word} word={wordData.word} />
+
+              <Definitions
+                meanings={wordData.meanings}
+                activeTab={activeTab}
+                onTabChange={handleTabChange}
+              />
+
+              {activeTab === "grammar" && (
+                <Grammar
+                  grammar={grammar}
+                  loading={grammarLoading}
+                  error={grammarError}
+                />
+              )}
+
               <Synonyms meanings={wordData.meanings} onSearch={handleSearch} />
+
               <VisualContext photos={photos} />
             </>
           )}
