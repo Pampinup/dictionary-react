@@ -35,6 +35,8 @@ h1 {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
 }
 
 .header-brand {
@@ -995,6 +997,9 @@ h1 {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+/* =========================
+   RESPONSIVE
+========================= */
 
 /* =========================
    DESKTOP DICTIONARY LAYOUT
@@ -1057,6 +1062,11 @@ h1 {
 ========================= */
 
 @media (min-width: 577px) and (max-width: 991px) {
+  .app-header .header-content {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
   .dictionary-layout {
     display: block;
   }
@@ -1071,6 +1081,20 @@ h1 {
 ========================= */
 
 @media (max-width: 576px) {
+  main {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .app-header .header-content {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+    align-items: flex-start;
+  }
+
+  .header-nav {
+    display: flex;
+  }
+
   .dictionary-layout {
     display: block;
     margin-top: var(--spacing-xl);
@@ -1078,24 +1102,6 @@ h1 {
 
   .dictionary-sidebar {
     margin-top: var(--spacing-xl);
-  }
-}
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 767px) {
-  .header-content {
-    align-items: flex-start;
-  }
-
-  .header-nav {
-    display: none;
-  }
-}
-
-@media (max-width: 576px) {
-  main {
-    padding: var(--spacing-lg) 0;
   }
 
   .container {
@@ -1116,6 +1122,7 @@ h1 {
     align-items: flex-start;
     flex-direction: column;
   }
+
   .synonyms-list {
     gap: 0.4rem;
   }
@@ -1123,11 +1130,11 @@ h1 {
   .synonyms-list button {
     padding: 0.4rem 0.75rem;
   }
+
   .visual-grid {
     grid-template-columns: 1fr;
   }
-}
-@media (max-width: 576px) {
+
   .translation-result {
     align-items: flex-start;
   }
@@ -1138,6 +1145,7 @@ h1 {
     margin-left: 0;
     margin-top: var(--spacing-xs);
   }
+
   .Footer {
     margin-top: var(--spacing-xl);
     padding: var(--spacing-lg) var(--spacing-sm);
@@ -1152,6 +1160,11 @@ h1 {
     height: 16px;
   }
 }
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media (max-width: 600px) {
   .grammar {
     margin-top: var(--spacing-lg);
