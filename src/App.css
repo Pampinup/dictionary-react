@@ -19,25 +19,66 @@ main {
 h1 {
   color: var(--text);
 }
+
 .app-header {
+  width: 100%;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.header-brand {
   color: var(--text-muted);
+
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.22em;
 
-  padding-top: var(--spacing-lg);
-  padding-bottom: var(--spacing-md);
+  text-decoration: none;
+  white-space: nowrap;
 
-  text-align: left;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
-/* =========================
-   SEARCH AREA
-========================= */
-
-.search-bar {
-  margin-top: var(--spacing-lg);
+.header-brand:hover {
+  color: var(--text);
 }
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.header-nav a {
+  color: var(--text-muted);
+
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.header-nav a:hover {
+  color: var(--text);
+}
+
 
 /* =========================
    SEARCH BAR
@@ -956,10 +997,102 @@ h1 {
   text-underline-offset: 3px;
 }
 
+/* =========================
+   DESKTOP DICTIONARY LAYOUT
+========================= */
 
+@media (min-width: 992px) {
+  main > .container {
+    max-width: 1100px;
+  }
+
+  .app-header .header-content {
+    max-width: 1050px;
+  }
+
+  .dictionary-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: var(--spacing-xxl);
+    align-items: start;
+    margin-top: var(--spacing-xl);
+  }
+
+  .dictionary-main {
+    min-width: 0;
+  }
+
+  .dictionary-sidebar {
+    min-width: 0;
+    padding-top: var(--spacing-xxl);
+  }
+
+  /* =========================
+     VISUAL CONTEXT
+  ========================= */
+
+  .dictionary-sidebar .visual-context {
+    margin-top: 0;
+  }
+
+  .dictionary-sidebar .visual-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .dictionary-sidebar .visual-card img {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* =========================
+     SYNONYMS
+  ========================= */
+
+  .dictionary-sidebar .synonyms {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .dictionary-layout {
+    display: block;
+  }
+
+  .dictionary-sidebar {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 576px) {
+  .dictionary-layout {
+    display: block;
+    margin-top: var(--spacing-xl);
+  }
+
+  .dictionary-sidebar {
+    margin-top: var(--spacing-xl);
+  }
+}
 /* =========================
    RESPONSIVE
 ========================= */
+@media (max-width: 767px) {
+  .header-content {
+    align-items: flex-start;
+  }
+
+  .header-nav {
+    display: none;
+  }
+}
 
 @media (max-width: 576px) {
   main {
@@ -1006,7 +1139,7 @@ h1 {
     margin-left: 0;
     margin-top: var(--spacing-xs);
   }
-   .Footer {
+  .Footer {
     margin-top: var(--spacing-xl);
     padding: var(--spacing-lg) var(--spacing-sm);
   }
@@ -1047,5 +1180,126 @@ h1 {
   .grammar-structures code {
     display: block;
     width: 100%;
+  }
+}
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-page {
+  min-height: 100vh;
+  padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+.about-container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.about-back {
+  display: inline-block;
+  margin-bottom: var(--spacing-xxl);
+
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.about-back:hover {
+  color: var(--text);
+}
+
+.about-content {
+  padding-bottom: var(--spacing-xxl);
+}
+
+.about-label {
+  margin: 0 0 var(--spacing-md);
+
+  color: var(--primary-light);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.about-content h1 {
+  margin: 0;
+
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.about-intro {
+  margin: var(--spacing-lg) 0 0;
+
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.about-section {
+  margin-top: var(--spacing-xxl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+}
+
+.about-section h2 {
+  margin: 0 0 var(--spacing-md);
+
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.about-section p {
+  margin: 0 0 var(--spacing-md);
+
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.about-section p:last-child {
+  margin-bottom: 0;
+}
+
+.about-final {
+  text-align: center;
+}
+
+.about-final p {
+  color: var(--primary-light);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+@media (max-width: 576px) {
+  .about-page {
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xxl);
+  }
+
+  .about-container {
+    max-width: 100%;
+  }
+
+  .about-back {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .about-intro {
+    font-size: 1rem;
   }
 }

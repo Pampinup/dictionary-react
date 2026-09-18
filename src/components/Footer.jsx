@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="Footer">
       <p>
         <img className="react-logo" src={reactLogo} alt="React logo" /> React
-        Weather App{" "}
+        Dictionary App{" "}
         <img className="react-logo" src={reactLogo} alt="React logo" /> was
         coded by{" "}
         <a

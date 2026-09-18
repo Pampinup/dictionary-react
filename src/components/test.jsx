@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
@@ -11,7 +10,6 @@ import VisualContext from "./components/VisualContext";
 import Grammar from "./components/Grammar";
 import Translation from "./components/Translation";
 import Footer from "./components/Footer";
-import About from "./components/About";
 
 import { searchWord } from "./services/dictionaryApi";
 import { searchImages } from "./services/pexelsApi";
@@ -19,7 +17,7 @@ import { getGrammar } from "./services/aiApi";
 
 import "./App.css";
 
-function Dictionary() {
+function App() {
   const [wordData, setWordData] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -110,63 +108,43 @@ function Dictionary() {
           )}
 
           {wordData && (
-            <div className="dictionary-layout">
-              <div className="dictionary-main">
-                <WordHeader
-                  word={wordData.word}
-                  phonetic={wordData.phonetic}
-                  partsOfSpeech={[
-                    ...new Set(
-                      wordData.meanings.map((meaning) => meaning.partOfSpeech),
-                    ),
-                  ]}
+            <>
+              <WordHeader
+                word={wordData.word}
+                phonetic={wordData.phonetic}
+                partsOfSpeech={[
+                  ...new Set(
+                    wordData.meanings.map((meaning) => meaning.partOfSpeech),
+                  ),
+                ]}
+              />
+
+              <Translation key={wordData.word} word={wordData.word} />
+
+              <Definitions
+                meanings={wordData.meanings}
+                activeTab={activeTab}
+                onTabChange={handleTabChange}
+              />
+
+              {activeTab === "grammar" && (
+                <Grammar
+                  grammar={grammar}
+                  loading={grammarLoading}
+                  error={grammarError}
                 />
+              )}
 
-                <Translation key={wordData.word} word={wordData.word} />
+              <Synonyms meanings={wordData.meanings} onSearch={handleSearch} />
 
-                <Definitions
-                  meanings={wordData.meanings}
-                  activeTab={activeTab}
-                  onTabChange={handleTabChange}
-                />
-
-                {activeTab === "grammar" && (
-                  <Grammar
-                    grammar={grammar}
-                    loading={grammarLoading}
-                    error={grammarError}
-                  />
-                )}
-              </div>
-
-              <aside className="dictionary-sidebar">
-                <VisualContext photos={photos} />
-
-                <Synonyms
-                  meanings={wordData.meanings}
-                  onSearch={handleSearch}
-                />
-              </aside>
-            </div>
+              <VisualContext photos={photos} />
+            </>
           )}
           <Footer />
         </div>
       </main>
     </>
-    
   );
 }
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dictionary />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
 
 export default App;
