@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <header className="app-header">
       <div className="header-content">
         <a
           className="header-brand"
-          href="https://desing-main-portfolio.netlify.app/"
+          href="https://dictionary-by-pam-ortega.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -17,10 +19,10 @@ function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Home
+            Portfolio
           </a>
 
-          <a href="./about">About</a>
+          <Link to="/about">About</Link>
 
           <a
             href="https://github.com/Pampinup/dictionary-react"

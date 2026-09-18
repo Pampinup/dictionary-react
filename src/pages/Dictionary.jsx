@@ -31,6 +31,7 @@ function Dictionary() {
     setLoading(true);
     setError("");
     setWordData(null);
+    setPhotos([]);
     setActiveTab("definitions");
     setGrammar(null);
     setGrammarError("");
@@ -38,11 +39,17 @@ function Dictionary() {
     try {
       const data = await searchWord(word);
       setWordData(data);
-
-      const imageData = await searchImages(word);
-      setPhotos(imageData.photos);
     } catch {
       setError("We couldn't find that word.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const imageData = await searchImages(word);
+      setPhotos(imageData.photos || []);
+    } catch {
+      setPhotos([]);
     } finally {
       setLoading(false);
     }

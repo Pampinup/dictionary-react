@@ -1165,7 +1165,7 @@ h1 {
    SMALL MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   .grammar {
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);

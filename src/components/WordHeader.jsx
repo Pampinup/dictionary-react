@@ -47,6 +47,7 @@ function WordHeader({ word, phonetic, partsOfSpeech }) {
 
       <button
         type="button"
+        aria-label="Listen the word"
         className={`audio-button ${isSpeaking ? "speaking" : ""}`}
         onClick={handleSpeak}
         disabled={isSpeaking}

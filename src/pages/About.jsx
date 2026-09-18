@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -8,9 +9,9 @@ function About() {
 
       <main className="about-page">
         <div className="about-container">
-          <a className="about-back" href="/">
+          <Link className="about-back" to="/">
             ← Back to dictionary
-          </a>
+          </Link>
 
           <section className="about-content">
             <p className="about-label">ABOUT THE PROJECT</p>
