@@ -154,6 +154,7 @@ Create a `.env` file in the project root:
 VITE_SHECODES_API_KEY=your_dictionary_api_key
 VITE_SHECODES_AI_API_KEY=your_ai_api_key
 VITE_PEXELS_API_KEY=your_pexels_api_key
+```
 
 Making sure `.env` is included in `.gitignore`.
 
@@ -196,4 +197,7 @@ Possible future improvements include:
 Built as part of the SheCodes React workshop.
 
 Designed and developed by Joice Pamela Ortega.
+
+```
+
 ```
