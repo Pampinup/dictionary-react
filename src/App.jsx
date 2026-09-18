@@ -9,6 +9,7 @@ import Synonyms from "./components/Synonyms";
 import VisualContext from "./components/VisualContext";
 import Grammar from "./components/Grammar";
 import Translation from "./components/Translation";
+import Footer from "./components/Footer";
 
 import { searchWord } from "./services/dictionaryApi";
 import { searchImages } from "./services/pexelsApi";
@@ -139,6 +140,7 @@ function App() {
               <VisualContext photos={photos} />
             </>
           )}
+          <Footer />
         </div>
       </main>
     </>
