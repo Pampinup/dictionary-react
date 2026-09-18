@@ -1,5 +1,5 @@
 function SuggestedWords({ onSearch }) {
-  const words = ["Aurora", "Bioluminescence", "Threshold", "Chimera", "Sunset"];
+  const words = ["Aurora", "Bioluminescence", "Halloween", "Autumn", "Sunset"];
 
   return (
     <div className="suggested-words">
