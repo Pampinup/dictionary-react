@@ -61,8 +61,10 @@ The application allows users to search for English words and explore their defin
 
 ```text
 src/
+│
 ├── components/
 │   ├── Definitions.jsx
+│   ├── Footer.jsx
 │   ├── Grammar.jsx
 │   ├── Header.jsx
 │   ├── SearchBar.jsx
@@ -71,6 +73,10 @@ src/
 │   ├── Translation.jsx
 │   ├── VisualContext.jsx
 │   └── WordHeader.jsx
+│
+├── pages/
+│   ├── About.jsx
+│   └── Dictionary.jsx
 │
 ├── services/
 │   ├── aiApi.js
@@ -81,6 +87,8 @@ src/
 ├── App.css
 ├── index.css
 └── main.jsx
+
+```
 
 ## API Integration
 
@@ -188,3 +196,4 @@ Possible future improvements include:
 Built as part of the SheCodes React workshop.
 
 Designed and developed by Joice Pamela Ortega.
+```
